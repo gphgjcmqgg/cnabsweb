@@ -10,10 +10,19 @@ const config: IConfig =  {
       routes: [
         { path: '/', component: '../pages/index' },
         { path: '/users', component: '../pages/users/index' },
+        { path: '/login', component: '../pages/login/index' },
         { path: '/users/list', component: '../pages/users/list' }
+
       ]
     }
   ],
+  proxy: {
+    "/api": {
+      "target": "http://10.1.1.221:10000/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api" : "" }
+    }
+  },
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
